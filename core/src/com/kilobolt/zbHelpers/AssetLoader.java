@@ -42,9 +42,6 @@ public class AssetLoader {
         bg = new TextureRegion(texture, 0, 0, 136, 43);
         bg.flip(false, true);
 
-        btn = new TextureRegion(texture, 0,83,29,99);
-        btn.flip(false,true);
-
         grass = new TextureRegion(texture, 0, 43, 143, 11);
         grass.flip(false, true);
 
