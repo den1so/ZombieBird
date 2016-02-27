@@ -27,7 +27,6 @@ public class GameWorld {
         currentState = GameState.READY;
         this.midPointY = midPointY;
         bird = new Bird(33, midPointY - 5, 17, 12);
-        // Трава должна начинаться на 66 пиксилей ниже чем знаение midPointY
         scroller = new ScrollHandler(this, midPointY + 66);
         ground = new Rectangle(0, midPointY + 66, 137, 11);
     }
@@ -54,7 +53,7 @@ public class GameWorld {
     }
 
     private void updateReady(float delta) {
-        // Пока ничего не делаем
+        scroller.ready(delta);
     }
 
     private void updateGameOver(float delta){

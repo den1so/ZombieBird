@@ -6,7 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.kilobolt.screens.GameScreen;
 import com.kilobolt.zbHelpers.AssetLoader;
 /**
- * By Xamel1on.
+ * By Xamel1on.   https://github.com/den1so/
  */
 
 public class MyGame extends Game {

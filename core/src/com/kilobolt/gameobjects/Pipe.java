@@ -5,9 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 import java.util.Random;
 
-/**
- * Created by X552E on 25.02.2016.
- */
+
 public class Pipe extends Scrollable {
 
     private Random r;
@@ -42,21 +40,12 @@ public class Pipe extends Scrollable {
 
     @Override
     public void update(float delta) {
-        // вызываем update метод в родительском классе (Scrollable)
         super.update(delta);
-
-        // Метод set() позволяет выставить координаты верзнего лего угла - x, y
-        // вместе с width и height прямоугольника
 
         barUp.set(position.x, position.y, width, height);
         barDown.set(position.x, position.y + height + VERTICAL_GAP, width,
                 groundY - (position.y + height + VERTICAL_GAP));
 
-        // Ширина черепа 24 пикселя. Ширина трубы всего 22 пикселя. Так что череп
-        // должен быть смещен на 1 пиксель влево (так что череп будет отцентрирован
-        // относительно трубы).
-
-        // Смещение равнозначно: (SKULL_WIDTH - width) / 2
         skullUp.set(position.x - (SKULL_WIDTH - width) / 2, position.y + height
                 - SKULL_HEIGHT, SKULL_WIDTH, SKULL_HEIGHT);
         skullDown.set(position.x - (SKULL_WIDTH - width) / 2, barDown.y,

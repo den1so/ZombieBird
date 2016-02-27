@@ -26,20 +26,17 @@ public class Scrollable {
     public void update(float delta) {
         position.add(velocity.cpy().scl(delta));
 
-        // Если объект Scrollable более не виден:
-        if (position.x + width < 0) {
+       if (position.x + width < 0) {
             isScrolledLeft = true;
         }
     }
 
-    // Reset: Нужно переопределять в дочернем классе, если необходимо описать
-    // другое поведение
     public void reset(float newX) {
         position.x = newX;
         isScrolledLeft = false;
     }
 
-    // Методы доступа к переменым класса
+
     public boolean isScrolledLeft() {
         return isScrolledLeft;
     }

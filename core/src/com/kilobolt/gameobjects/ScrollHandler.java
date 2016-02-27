@@ -8,20 +8,12 @@ import com.kilobolt.zbHelpers.AssetLoader;
 public class ScrollHandler {
 
     private GameWorld  gameWorld;
-    // ScrollHandler создаст все необходимые нам объекты
     private Grass frontGrass, backGrass;
     private Pipe pipe1, pipe2, pipe3;
 
-    // ScrollHandler будет использовать следующие константы
-    // чтобы определить, как быстро на перемещать объекты
-    // и какой промежуток между трубами
-
-    // заглавные буквы используются по договоренности об именовании переменных
-    public static final int SCROLL_SPEED = -59;
+   public static final int SCROLL_SPEED = -59;
     public static final int PIPE_GAP = 49;
 
-    // конструктор получает значение по Y оси, где нам необходимо создать наши
-    // Grass и Pipe объекты.
     public ScrollHandler(GameWorld gameWorld, float yPos) {
 
         this.gameWorld = gameWorld;
@@ -37,6 +29,19 @@ public class ScrollHandler {
 
     }
 
+    public void ready(float delta){
+        frontGrass.update(delta);
+        backGrass.update(delta);
+
+        if (frontGrass.isScrolledLeft()) {
+            frontGrass.reset(backGrass.getTailX());
+
+        } else if (backGrass.isScrolledLeft()) {
+            backGrass.reset(frontGrass.getTailX());
+
+        }
+    }
+
     public void update(float delta) {
 
         frontGrass.update(delta);
@@ -45,9 +50,7 @@ public class ScrollHandler {
         pipe2.update(delta);
         pipe3.update(delta);
 
-        // проверяем кто из объектов за левой границей
-        // и соответственно сбрасываем параметры этого объекта
-        if (pipe1.isScrolledLeft()) {
+       if (pipe1.isScrolledLeft()) {
             pipe1.reset(pipe3.getTailX() + PIPE_GAP);
         } else if (pipe2.isScrolledLeft()) {
             pipe2.reset(pipe1.getTailX() + PIPE_GAP);
@@ -56,8 +59,7 @@ public class ScrollHandler {
             pipe3.reset(pipe2.getTailX() + PIPE_GAP);
         }
 
-        // то-же самое с травой
-        if (frontGrass.isScrolledLeft()) {
+       if (frontGrass.isScrolledLeft()) {
             frontGrass.reset(backGrass.getTailX());
 
         } else if (backGrass.isScrolledLeft()) {
@@ -74,7 +76,6 @@ public class ScrollHandler {
         pipe2.stop();
         pipe3.stop();}
 
-    // вернуть True если какая-нибудь из труб коснулась птицы
     public boolean collides(Bird bird) {
         if (!pipe1.isScored()
                 && pipe1.getX() + (pipe1.getWidth() / 2) < bird.getX()
@@ -102,7 +103,7 @@ public class ScrollHandler {
                 .collides(bird));
     }
 
-    // методы доступа к переменным класса
+
     public Grass getFrontGrass() {
         return frontGrass;
     }

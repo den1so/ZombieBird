@@ -4,9 +4,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.kilobolt.gameobjects.Bird;
 import com.kilobolt.gameworld.GameWorld;
 
-/**
- * Created by X552E on 24.02.2016.
- */
+
 public class InputHandler implements InputProcessor {
 
     private Bird myBird;
@@ -41,7 +39,7 @@ public class InputHandler implements InputProcessor {
         myBird.onClick();
 
         if (myWorld.isGameOver() || myWorld.isHighScore()) {
-            // Reset all variables, go to GameState.READ
+
             myWorld.restart();
         }
 

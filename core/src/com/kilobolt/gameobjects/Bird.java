@@ -4,16 +4,14 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.kilobolt.zbHelpers.AssetLoader;
 
-/**
- * Created by X552E on 24.02.2016.
- */
+
 public class Bird {
 
     private Vector2 position;
     private Vector2 velocity;
     private Vector2 acceleration;
 
-    private float rotation; // Для обработки поворота птицы
+    private float rotation;
     private int width;
     private int height;
     private boolean isAlive;
@@ -49,7 +47,6 @@ public class Bird {
             velocity.y = 200;
         }
 
-        // проверяем потолок
         if (position.y < -13) {
             position.y = -13;
             velocity.y = 0;
@@ -57,11 +54,8 @@ public class Bird {
 
         position.add(velocity.cpy().scl(delta));
 
-        // Устанавливаем центр круга (9, 6) по отношению к птице.
-        // Устанавливаем радиус круга равным 6.5f;
         boundingCircle.set(position.x + 9, position.y + 6, 6.5f);
 
-        // Повернем против часовой стрелки
         if (velocity.y < 0) {
             rotation -= 600 * delta;
 
@@ -70,7 +64,6 @@ public class Bird {
             }
         }
 
-        // Повернем по часовой стрелке
         if (isFalling() || !isAlive) {
             rotation += 480 * delta;
             if (rotation > 90) {
@@ -104,7 +97,6 @@ public class Bird {
     }
 
     public void decelerate() {
-        // Нам надо чтобы птичка перестала падать вниз когда умерла
         acceleration.y = 0;
     }
 

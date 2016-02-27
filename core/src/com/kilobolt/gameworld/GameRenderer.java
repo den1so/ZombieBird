@@ -15,9 +15,7 @@ import com.kilobolt.gameobjects.ScrollHandler;
 import com.kilobolt.zbHelpers.AssetLoader;
 import com.badlogic.gdx.graphics.g2d.Animation;
 
-/**
- * By Xamel1on.
- */
+
 public class GameRenderer {
 
 private GameWorld myWorld;
@@ -80,17 +78,14 @@ private GameWorld myWorld;
     }
 
     private void drawGrass() {
-        // Отрисовываем траву
+
         batcher.draw(grass, frontGrass.getX(), frontGrass.getY(),
                 frontGrass.getWidth(), frontGrass.getHeight());
         batcher.draw(grass, backGrass.getX(), backGrass.getY(),
                 backGrass.getWidth(), backGrass.getHeight());
     }
 
-    private void drawSkulls() {
-        // Временный код, извините за кашу :)
-        // Мы это починим, как только закончим с Pipe классом.
-
+     private void drawSkulls() {
         batcher.draw(skullUp, pipe1.getX() - 1,
                 pipe1.getY() + pipe1.getHeight() - 14, 24, 14);
         batcher.draw(skullDown, pipe1.getX() - 1,
@@ -108,9 +103,6 @@ private GameWorld myWorld;
     }
 
     private void drawPipes() {
-        // Временный код, извините за кашу :)
-        // Мы это починим, как только закончим с Pipe классом.
-
         batcher.draw(bar, pipe1.getX(), pipe1.getY(), pipe1.getWidth(),
                 pipe1.getHeight());
         batcher.draw(bar, pipe1.getX(), pipe1.getY() + pipe1.getHeight() + 45,
@@ -169,11 +161,10 @@ private GameWorld myWorld;
 
 
         if (myWorld.isReady()) {
-            // Отрисуем сначала тень
+
             AssetLoader.shadow.draw(batcher, "Touch me", (136 / 2) - (42), 76);
-            // А теперь сам текст
-            AssetLoader.font
-                    .draw(batcher, "Touch me", (136 / 2) - (42 - 1), 75);
+            AssetLoader.font.draw(batcher, "Touch me", (136 / 2) - (42 - 1), 75);
+
         } else {
 
             if (myWorld.isGameOver() || myWorld.isHighScore()) {
@@ -198,10 +189,7 @@ private GameWorld myWorld;
                     AssetLoader.font.draw(batcher,"High Score", 24, 80);
                 }
 
-                //AssetLoader.shadow.draw(batcher, "Try again?", 23, 76);
-                //AssetLoader.font.draw(batcher, "Try again?", 24, 75);
 
-                // Конвертируем integer в String
                 String score = myWorld.getScore() + "";
 
                 AssetLoader.shadow.draw(batcher, score,

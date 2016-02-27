@@ -1,8 +1,6 @@
 package com.kilobolt.zbHelpers;
 
-/**
- * Created by X552E on 24.02.2016.
- */
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
@@ -16,6 +14,7 @@ public class AssetLoader {
 
     public static Texture texture;
     public static TextureRegion bg, grass;
+    public static TextureRegion btn;
 
     public static Animation birdAnimation;
     public static TextureRegion bird, birdDown, birdUp;
@@ -31,10 +30,8 @@ public class AssetLoader {
 
     public static void load() {
 
-        // Создайте (или получите ранее созданный) файл preferences
         prefs = Gdx.app.getPreferences("ZombieBird");
 
-// Создадим переменую для хранения лучшего счета со значением по умолчанию 0
         if (!prefs.contains("highScore")) {
             prefs.putInteger("highScore", 0);
         }
@@ -44,6 +41,9 @@ public class AssetLoader {
 
         bg = new TextureRegion(texture, 0, 0, 136, 43);
         bg.flip(false, true);
+
+        btn = new TextureRegion(texture, 0,83,29,99);
+        btn.flip(false,true);
 
         grass = new TextureRegion(texture, 0, 43, 143, 11);
         grass.flip(false, true);
@@ -62,7 +62,6 @@ public class AssetLoader {
         birdAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
         skullUp = new TextureRegion(texture, 192, 0, 24, 14);
-        // Create by flipping existing skullUp
         skullDown = new TextureRegion(skullUp);
         skullDown.flip(false, true);
 
@@ -77,12 +76,11 @@ public class AssetLoader {
         font.getData().setScale(0.25f, -0.25f);
         shadow = new BitmapFont(Gdx.files.internal("data/shadow.fnt"));
         shadow.getData().setScale(0.25f, -0.25f);
-        //shadow.getData().s
+
 
     }
 
     public static void dispose() {
-        // Мы должны избавляться от текстур, когда заканчивает работать с объектом в котором есть текстуры
         texture.dispose();
         dead.dispose();
         flap.dispose();
@@ -96,7 +94,7 @@ public class AssetLoader {
         prefs.flush();
     }
 
-    // Возвращает текущее значение hishScore
+
     public static int getHighScore() {
         return prefs.getInteger("highScore");
     }
